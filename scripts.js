@@ -1,14 +1,49 @@
+var serialsFederalFile = "https://localhost/serialsFederal.txt";
+var serialsCciSpeerFile = "https://localhost/serialsCciSpeer.txt";
+
+window.onload = function () {
+    loadSerials(serialsFederalFile, "federalammos");
+    loadSerials(serialsCciSpeerFile, "ccispeerammos");
+};
+
+window.onbeforeunload = function (e) {
+    e = e || window.event;
+    return "Are you sure?";
+};
+
+function changeBrand ( e ) {
+    if (e.value == "federalammos") {
+        document.getElementById("federalammos").style.display = "block";
+        document.getElementById("ccispeerammos").style.display = "none";
+    } else {
+        document.getElementById("federalammos").style.display = "none";
+        document.getElementById("ccispeerammos").style.display = "block";
+    }
+}
+
+function loadSerials( filename, container ) {
+    console.log(filename);
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+            var cont = document.getElementById(container);
+            this.responseText.split('\n').sort().forEach((line) => {
+                cont = document.getElementById(container);
+                cont.appendChild(getAmmoEntry(line));
+                console.log("Added " + line);
+            });
+        }
+    };
+    xmlhttp.open("GET", filename, true);
+    xmlhttp.send();
+}
+
 var seen = new Set();
 
-function addAmmo () {
-    var name = document.getElementById("add_name").value;
+function getAmmoEntry ( name ) {
     if (seen.has(name)) return;
-
     seen.add(name);
-
     
-    var ammos = document.getElementById("ammos");
-
     var newAmmo = document.createElement("LI");
 
     var newName = document.createElement("SPAN");
@@ -16,7 +51,7 @@ function addAmmo () {
     newName.innerText = name;
 
     var count = document.createElement("SPAN");
-    count.style = `width: 50px; display: inline-block;`
+    count.style = `width: 50px; display: inline-block;`;
     count.setAttribute(`id`, `_${name}_count`);
     count.innerText = 0;
 
@@ -27,7 +62,7 @@ function addAmmo () {
     addOneButton.innerText = "Add 1";
 
     var addCount = document.createElement("INPUT");
-    addCount.style = `margin-right: 10px; width: 30px;`
+    addCount.style = `margin-right: 10px; width: 30px;`;
     addCount.setAttribute(`id`, `_${name}_addCount`);
     addCount.value = 0;
 
@@ -49,6 +84,25 @@ function addAmmo () {
     newAmmo.appendChild(addCount);
     newAmmo.appendChild(addCountButton);
     newAmmo.appendChild(subCountButton);
+    
+    return newAmmo;
+
+    
+}
+
+function addAmmo () {
+    var name = document.getElementById("add_name").value;
+    
+    var newAmmo = getAmmoEntry(name);
+    if (!newAmmo) return;
+    
+    var brands = document.getElementsByName("brand");
+    var ammos;
+    brands.forEach(( brand ) => {
+       if (brand.checked) {
+           ammos = document.getElementById(brand.value);
+       }
+    });
 
     ammos.appendChild(newAmmo);
 }
@@ -61,6 +115,7 @@ function changeValue (to, sign) {
     var name = to.id.split("_")[1];
     var counter = document.getElementById(`_${name}_count`);
     var valueToAdd = parseInt(document.getElementById(`_${name}_addCount`).value);
+    document.getElementById(`_${name}_addCount`).value = 0;
     if (valueToAdd) {
         if (sign) addX(counter, -valueToAdd);
         else addX(counter, valueToAdd);
@@ -69,6 +124,6 @@ function changeValue (to, sign) {
 
 function addX (to, x) {
     var curVal = parseInt(to.innerText);
-    console.log(`Changed ${to.id} from ${curVal} to ${curVal + x}`)
+    console.log(`Changed ${to.id} from ${curVal} to ${curVal + x}`);
     to.innerText = curVal + x;
 }

@@ -1,12 +1,30 @@
 <script type="text/javascript" src="js.js"></script>
 
 <div id="entries">
+    <input type="radio" id="federalradio" name="brand" value="federalammos" onchange="changeBrand(this)" checked />
+    <label for="Federal">Federal</label>
+    <input type="radio" id="ccispeerradio" name="brand" value="ccispeerammos" onchange="changeBrand(this)" />
+    <label for="ccispeer">CCI/Speer</label>
+    
+    <a href="javascript:window.print();" style="margin-left: 100px">Print page</a>
+    
+    <br>
+    
+    <div id="federalammoscont">
+        <ul id="federalammos" style="list-style-type: none; display: block;">
+            <li><span style="width: 130px; display: inline-block;">Name</span><span>Count</span></li>
+    
+        </ul>
+    </div>
+    <div id="ccispeerammoscont" style="">
+        <ul id="ccispeerammos" style="list-style-type: none; display: none;">
+            <li><span style="width: 130px; display: inline-block;">Name</span><span>Count</span></li>
+    
+        </ul>
+    </div>
+    
     Add an ammo serial:<br>
     <input type="text" id="add_name" style="margin-right: 10px">
     <button id="add_button" onclick="addAmmo()">Add</button>
-    <br>
-    <ul id="ammos" style="list-style-type: none;">
-        <li><span style="width: 130px; display: inline-block;">Name</span><span>Count</span></li>
 
-    </ul>
 </div>
