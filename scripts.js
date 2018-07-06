@@ -1,5 +1,6 @@
-var serialsFederalFile = "https://localhost/serialsFederal.txt";
-var serialsCciSpeerFile = "https://localhost/serialsCciSpeer.txt";
+var url = window.location.href.split('/').slice(0, -1).join('/');
+var serialsFederalFile = url + "/serialsFederal.txt";
+var serialsCciSpeerFile = url + "/serialsCciSpeer.txt";
 
 window.onload = function () {
     loadSerials(serialsFederalFile, "federalammos");
