@@ -65,7 +65,7 @@ function getAmmoEntry ( name ) {
     count.innerText = 0;
 
     var addOneButton = document.createElement("BUTTON");
-    addOneButton.style = `margin-right: 10px;`;
+    addOneButton.style = `margin-right: 20px; text-align: center;`;
     addOneButton.setAttribute("id", `_${name}_addOne_button`);
     addOneButton.setAttribute(`onclick`, `addOne(_${name}_count)`);
     addOneButton.innerText = "+ 1";
@@ -76,7 +76,7 @@ function getAmmoEntry ( name ) {
     addCount.value = "";
 
     var addCountButton = document.createElement("BUTTON");
-    addCountButton.style = `margin-right: 5px;`;
+    addCountButton.style = `margin-right: 5px; text-align: center;`;
     addCountButton.setAttribute("id", `_${name}_addCount_button`);
     addCountButton.setAttribute(`onclick`, `changeValue(_${name}_addCount)`);
     addCountButton.style.width = "25px";
@@ -90,7 +90,7 @@ function getAmmoEntry ( name ) {
     });
 
     var subCountButton = document.createElement("BUTTON");
-    // subCountButton.style = `margin-right: 50px;`;
+    subCountButton.style = `text-align: center;`;
     subCountButton.setAttribute("id", `_${name}_subCount_button`);
     subCountButton.setAttribute(`onclick`, `changeValue(_${name}_addCount, true)`);
     subCountButton.style.width = "25px";
