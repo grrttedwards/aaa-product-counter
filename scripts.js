@@ -5,6 +5,12 @@ var serialsCciSpeerFile = url + "/serialsCciSpeer.txt";
 window.onload = function () {
     loadSerials(serialsFederalFile, "federalammos");
     loadSerials(serialsCciSpeerFile, "ccispeerammos");
+    document.getElementById("add_name").addEventListener("keyup", function(event) {
+        event.preventDefault();
+        if (event.keyCode === 13) {
+            document.getElementById("add_button").click();
+        }
+    });
 };
 
 window.onbeforeunload = function (e) {
@@ -29,6 +35,7 @@ function loadSerials( filename, container ) {
         if (this.readyState == 4 && this.status == 200) {
             var cont = document.getElementById(container);
             this.responseText.split('\n').sort().forEach((line) => {
+                line = line.trim();
                 cont = document.getElementById(container);
                 cont.appendChild(getAmmoEntry(line));
                 console.log("Added " + line);
@@ -49,6 +56,8 @@ function getAmmoEntry ( name ) {
 
     var newName = document.createElement("SPAN");
     newName.style = "width: 150px; display: inline-block;";
+    newName.style.fontFamily = "monospace";
+    newName.style.fontSize = 18;
     newName.innerText = name;
 
     var count = document.createElement("SPAN");
@@ -65,19 +74,28 @@ function getAmmoEntry ( name ) {
     var addCount = document.createElement("INPUT");
     addCount.style = `margin-right: 10px; width: 30px;`;
     addCount.setAttribute(`id`, `_${name}_addCount`);
-    addCount.value = 0;
+    addCount.value = "";
 
     var addCountButton = document.createElement("BUTTON");
     addCountButton.style = `margin-right: 5px;`;
     addCountButton.setAttribute("id", `_${name}_addCount_button`);
     addCountButton.setAttribute(`onclick`, `changeValue(_${name}_addCount)`);
-    addCountButton.innerText = "+ X";
+    addCountButton.style.width = "25px";
+    addCountButton.innerText = "+";
+
+    addCount.addEventListener("keyup", function(event) {
+        event.preventDefault();
+        if (event.keyCode === 13) {
+            addCountButton.click();
+        }
+    });
 
     var subCountButton = document.createElement("BUTTON");
-    subCountButton.style = `margin-right: 50px;`;
+    // subCountButton.style = `margin-right: 50px;`;
     subCountButton.setAttribute("id", `_${name}_subCount_button`);
     subCountButton.setAttribute(`onclick`, `changeValue(_${name}_addCount, true)`);
-    subCountButton.innerText = "- X";
+    subCountButton.style.width = "25px";
+    subCountButton.innerText = "-";
 
     newAmmo.appendChild(newName);
     newAmmo.appendChild(count);
@@ -93,6 +111,7 @@ function getAmmoEntry ( name ) {
 
 function addAmmo () {
     var name = document.getElementById("add_name").value;
+    document.getElementById("add_name").value = "";
     
     var newAmmo = getAmmoEntry(name);
     if (!newAmmo) return;
@@ -116,7 +135,7 @@ function changeValue (to, sign) {
     var name = to.id.split("_")[1];
     var counter = document.getElementById(`_${name}_count`);
     var valueToAdd = parseInt(document.getElementById(`_${name}_addCount`).value);
-    document.getElementById(`_${name}_addCount`).value = 0;
+    document.getElementById(`_${name}_addCount`).value = "" ;
     if (valueToAdd) {
         if (sign) addX(counter, -valueToAdd);
         else addX(counter, valueToAdd);
