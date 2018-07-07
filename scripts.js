@@ -29,7 +29,7 @@ function changeBrand ( e ) {
 }
 
 function loadSerials( filename, container ) {
-    console.log(filename);
+    console.log(`Loading ${filename}`);
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
@@ -38,7 +38,6 @@ function loadSerials( filename, container ) {
                 line = line.trim();
                 cont = document.getElementById(container);
                 cont.appendChild(getAmmoEntry(line));
-                console.log("Added " + line);
             });
         }
     };
@@ -145,6 +144,6 @@ function changeValue (to, sign) {
 
 function addX (to, x) {
     var curVal = parseInt(to.innerText);
-    console.log(`Changed ${to.id} from ${curVal} to ${curVal + x}`);
+    console.log(`Changed ${to.id.split("_")[1]} by ${x} from ${curVal} to ${curVal + x}`);
     to.innerText = curVal + x;
 }
