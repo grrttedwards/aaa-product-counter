@@ -6,27 +6,30 @@
     <input type="radio" id="ccispeerradio" name="brand" value="ccispeerammos" onchange="changeBrand(this)" />
     <label for="ccispeer">CCI/Speer</label>
     
-    <a href="javascript:window.print();" style="margin-left: 100px">Print page</a>
+    <a href="javascript:window.print();" style="margin-left: 100px">Print page</a> <a href="https://github.com/grrttedwards/aaa-te-checker" style="margin-left: 100px;">Source on GitHub</a>
     
-    <br>
-    
-    <div id="federalammoscont">
-        <ul id="federalammos" style="list-style-type: none; display: block; columns: 2 200px; column-rule: 1px dotted #ddd; column-fill:auto; height: 80%;">
-            <li><span style="width: 130px; display: inline-block;">Name</span><span>Count</span></li>
-    
-        </ul>
-    </div>
-    <div id="ccispeerammoscont" style="">
-        <ul id="ccispeerammos" style="list-style-type: none; display: none;">
-            <li><span style="width: 130px; display: inline-block;">Name</span><span>Count</span></li>
-    
-        </ul>
-    </div>
-    
-    Add an ammo serial:<br>
+    <br><br>
+    Add new serial:<br>
     <input type="text" id="add_name" style="margin-right: 10px">
     <button id="add_button" onclick="addAmmo()">Add</button>
+    <br>
+    
+    <style>
+        .ammoscol {
+            list-style-type: none; display: block; columns: 3 350px; column-rule: 1px dotted #ddd; column-fill:auto; height: 80%;
+        }
+    </style>
 
-    <br><br>
-    <a href="https://github.com/grrttedwards/aaa-te-checker">Source on GitHub</a>
+    <div id="federalammoscont">
+        <ul id="federalammos" class="ammoscol" style="display: block;">
+            <li><span style="width: 130px; display: inline-block;">Name</span><span>Count</span></li>
+    
+        </ul>
+    </div>
+    <div id="ccispeerammoscont">
+        <ul id="ccispeerammos" class="ammoscol" style="display: none;">
+            <li><span style="width: 130px; display: inline-block;">Name</span><span>Count</span></li>
+    
+        </ul>
+    </div>
 </div>

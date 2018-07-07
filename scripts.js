@@ -69,7 +69,7 @@ function getAmmoEntry ( name ) {
     addOneButton.style = `margin-right: 10px;`;
     addOneButton.setAttribute("id", `_${name}_addOne_button`);
     addOneButton.setAttribute(`onclick`, `addOne(_${name}_count)`);
-    addOneButton.innerText = "Add 1";
+    addOneButton.innerText = "+ 1";
 
     var addCount = document.createElement("INPUT");
     addCount.style = `margin-right: 10px; width: 30px;`;
@@ -111,6 +111,7 @@ function getAmmoEntry ( name ) {
 
 function addAmmo () {
     var name = document.getElementById("add_name").value;
+    if (!name) return;
     document.getElementById("add_name").value = "";
     
     var newAmmo = getAmmoEntry(name);
