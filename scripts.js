@@ -11,6 +11,7 @@ window.onload = function () {
             document.getElementById("add_button").click();
         }
     });
+    changeBrand(document.getElementsByName("brand")[0]);
 };
 
 window.onbeforeunload = function (e) {
@@ -19,13 +20,10 @@ window.onbeforeunload = function (e) {
 };
 
 function changeBrand ( e ) {
-    if (e.value == "federalammos") {
-        document.getElementById("federalammos").style.display = "block";
-        document.getElementById("ccispeerammos").style.display = "none";
-    } else {
-        document.getElementById("federalammos").style.display = "none";
-        document.getElementById("ccispeerammos").style.display = "block";
-    }
+    document.getElementsByName("productlist").forEach( (element) => {
+        element.style.display = "none";
+    });
+    document.getElementById(e.value).style.display = "block";
 }
 
 function loadProducts( filename, container ) {
@@ -105,8 +103,6 @@ function getAmmoEntry ( name ) {
     newAmmo.appendChild(subCountButton);
     
     return newAmmo;
-
-    
 }
 
 function addAmmo () {
