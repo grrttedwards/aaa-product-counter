@@ -1,10 +1,10 @@
 var url = window.location.href.split('/').slice(0, -1).join('/');
-var serialsFederalFile = url + "/serialsFederal.txt";
-var serialsCciSpeerFile = url + "/serialsCciSpeer.txt";
+var productsFederalFile = url + "/products_federal.txt";
+var productsCciSpeerFile = url + "/products_ccispeer.txt";
 
 window.onload = function () {
-    loadSerials(serialsFederalFile, "federalammos");
-    loadSerials(serialsCciSpeerFile, "ccispeerammos");
+    loadProducts(productsFederalFile, "federalammos");
+    loadProducts(productsCciSpeerFile, "ccispeerammos");
     document.getElementById("add_name").addEventListener("keyup", function(event) {
         event.preventDefault();
         if (event.keyCode === 13) {
@@ -28,7 +28,7 @@ function changeBrand ( e ) {
     }
 }
 
-function loadSerials( filename, container ) {
+function loadProducts( filename, container ) {
     console.log(`Loading ${filename}`);
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() {
