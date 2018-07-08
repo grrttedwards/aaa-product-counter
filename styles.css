@@ -1,0 +1,3 @@
+.ammoscol {
+    list-style-type: none; display: block; columns: 4 350px; column-rule: 1px dotted #ddd; column-fill:auto; height: 85%;
+}
