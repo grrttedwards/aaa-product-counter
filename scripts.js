@@ -36,6 +36,7 @@ function loadProducts( filename, container ) {
             var cont = document.getElementById(container);
             this.responseText.split('\n').sort().forEach((line) => {
                 line = line.trim();
+                if (!line) return;  // throw away potential blank lines
                 cont = document.getElementById(container);
                 cont.appendChild(getAmmoEntry(line));
             });
