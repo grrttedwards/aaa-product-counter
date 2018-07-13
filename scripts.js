@@ -39,9 +39,15 @@ function printPopulated() {
 }
 
 function changeBrand ( e ) {
+    document.getElementsByName("brand").forEach( (element) => {
+        element.removeAttribute("checked");
+    })
+    e.setAttribute("checked", true);
+    console.log(e.checked);
+
     document.getElementsByName("productlist").forEach( (element) => {
         element.style.display = "none";
-    });
+    })
     document.getElementById(e.value).style.display = "block";
 }
 
