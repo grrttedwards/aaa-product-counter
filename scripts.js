@@ -47,16 +47,20 @@ function loadProducts( filename, container ) {
 var seen = new Set();
 
 function getAmmoEntry ( name ) {
+    name = name.trim();  // remove whitespace from front and back, for sanity
     if (seen.has(name)) return;
     seen.add(name);
     
     var newAmmo = document.createElement("LI");
+    newAmmo.setAttribute("name", "count");
 
     var newName = document.createElement("SPAN");
     newName.style = "width: 150px; display: inline-block;";
     newName.style.fontFamily = "monospace";
     newName.style.fontSize = 18;
     newName.innerText = name;
+
+    name = name.replace(/ /g, "_");  // replace spaces with safer characters
 
     var count = document.createElement("SPAN");
     count.style = `width: 50px; display: inline-block;`;
@@ -141,6 +145,6 @@ function changeValue (to, sign) {
 
 function addX (to, x) {
     var curVal = parseInt(to.innerText);
-    console.log(`Changed ${to.id.split("_")[1]} by ${x} from ${curVal} to ${curVal + x}`);
+    console.log(`Changed ${to.id} by ${x} from ${curVal} to ${curVal + x}`);
     to.innerText = curVal + x;
 }
