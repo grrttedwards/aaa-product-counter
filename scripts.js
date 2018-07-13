@@ -3,8 +3,8 @@ var productsFederalFile = url + "/products_federal.txt";
 var productsCciSpeerFile = url + "/products_ccispeer.txt";
 
 window.onload = function () {
-    loadProducts(productsFederalFile, "federalammos");
-    loadProducts(productsCciSpeerFile, "ccispeerammos");
+    loadProducts(productsFederalFile, "federalproducts");
+    loadProducts(productsCciSpeerFile, "ccispeerproducts");
     document.getElementById("add_name").addEventListener("keyup", function(event) {
         event.preventDefault();
         if (event.keyCode === 13) {
@@ -49,7 +49,6 @@ function changeBrand ( e ) {
         element.removeAttribute("checked");
     })
     e.setAttribute("checked", true);
-    console.log(e.checked);
 
     document.getElementsByName("productlist").forEach( (element) => {
         element.style.display = "none";
@@ -140,7 +139,7 @@ function getAmmoEntry ( name ) {
     return newAmmo;
 }
 
-function addAmmo () {
+function addProduct () {
     var name = document.getElementById("add_name").value;
     if (!name) return;
     document.getElementById("add_name").value = "";
@@ -149,14 +148,14 @@ function addAmmo () {
     if (!newAmmo) return;
     
     var brands = document.getElementsByName("brand");
-    var ammos;
+    var product;
     brands.forEach(( brand ) => {
        if (brand.checked) {
-           ammos = document.getElementById(brand.value);
+           product = document.getElementById(brand.value);
        }
     });
 
-    ammos.appendChild(newAmmo);
+    product.appendChild(newAmmo);
 }
 
 function addOne (to) {

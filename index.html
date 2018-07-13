@@ -4,10 +4,12 @@
 </head>
 
 <div id="entries">
-    <input type="radio" id="federalradio" name="brand" value="federalammos" onchange="changeBrand(this)" checked />
+    <input type="radio" id="federalradio" name="brand" value="federalproducts" onchange="changeBrand(this)" checked />
     <label for="Federal">Federal</label>
-    <input type="radio" id="ccispeerradio" name="brand" value="ccispeerammos" onchange="changeBrand(this)" />
+    <input type="radio" id="ccispeerradio" name="brand" value="ccispeerproducts" onchange="changeBrand(this)" />
     <label for="ccispeer">CCI/Speer</label>
+    <input type="radio" id="blankradio" name="brand" value="blankproducts" onchange="changeBrand(this)" />
+    <label for="ccispeer">Blank List</label>
     
     <a href="javascript:printPopulated();">Print page</a> <a href="https://github.com/grrttedwards/aaa-te-checker">Source on GitHub</a>
     
@@ -16,17 +18,22 @@
     Add other product:<br>
 
     <input type="text" id="add_name">
-    <button id="add_button" onclick="addAmmo()">Add</button>
+    <button id="add_button" onclick="addProduct()">Add</button>
 
     <br>
 
-    <ul id="federalammos" name="productlist" class="ammoscol">
+    <ul id="federalproducts" name="productlist" class="productscol">
         <li>
             <span class="tableheader">Name</span>Count
         </li>
 
     </ul>
-    <ul id="ccispeerammos" name="productlist" class="ammoscol">
+    <ul id="ccispeerproducts" name="productlist" class="productscol">
+        <li>
+            <span class="tableheader">Name</span>Count
+        </li>
+    </ul>
+    <ul id="blankproducts" name="productlist" class="productscol">
         <li>
             <span class="tableheader">Name</span>Count
         </li>
