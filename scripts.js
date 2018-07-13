@@ -38,7 +38,9 @@ function printPopulated() {
             }
         }
     });
+    var header = document.getElementById("tableheader");
     document.body.innerHTML = "<h1>Product Count</h1>";
+    document.body.appendChild(header);
     document.body.appendChild(printContents);
     window.print();
     document.body.innerHTML = originalContents;

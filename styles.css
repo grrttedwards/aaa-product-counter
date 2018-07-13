@@ -1,8 +1,18 @@
 .productscol {
-    list-style-type: none; display: block; columns: 4 350px; column-rule: 1px dotted #ddd; column-fill:auto; height: 85%;
+    list-style-type: none; 
+    display: block; 
+    columns: 4 350px; 
+    column-rule: 1px dotted #ddd; 
+    column-fill:auto; 
+    height: 80%;
 }
 
-.tableheader {
+#tableheader {
+    padding-left: 40px;
+    margin-top: 16px;
+}
+
+#tableheader > span {
     width: 130px;
     display: inline-block;
 }
