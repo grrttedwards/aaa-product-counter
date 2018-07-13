@@ -22,14 +22,20 @@ window.onbeforeunload = function (e) {
 function printPopulated() {
     var originalContents = document.body.innerHTML;
     var printContents = document.createElement("ul");
-    document.getElementsByName("count").forEach( (element) => {
-        if (element.getElementsByTagName("span")[1].innerText != "0") {  // the second span is the value field 
-            var newLi = document.createElement("li");
-            element.querySelectorAll("span").forEach( (element2) => {
-                newLi.appendChild(element2);
-            });
-            newLi.style = "border-bottom:1px dashed #000; width: 200px;"
-            printContents.appendChild(newLi);
+    document.getElementsByName("productlist").forEach( (productList) => {
+        if (productList.style.display == "none") return;  // skip any hidden product list
+        var products = productList.getElementsByTagName("li");
+        for (var i = 1; i < products.length; i++) {
+            var product = products[i];  // skip the first header element of the lists
+            var count = product.getElementsByTagName("span")[1];
+            if (count.innerText != "0") {  // the second span is the value field 
+                var newLi = document.createElement("li");
+                product.querySelectorAll("span").forEach( (element) => {
+                    newLi.appendChild(element);
+                });
+                newLi.style = "border-bottom:1px dashed #000; width: 200px;"
+                printContents.appendChild(newLi);
+            }
         }
     });
     document.body.innerHTML = "<h1>Product Count</h1>";
