@@ -19,6 +19,25 @@ window.onbeforeunload = function (e) {
     return "Are you sure?";
 };
 
+function printPopulated() {
+    var originalContents = document.body.innerHTML;
+    var printContents = document.createElement("ul");
+    document.getElementsByName("count").forEach( (element) => {
+        if (element.getElementsByTagName("span")[1].innerText != "0") {  // the second span is the value field 
+            var newLi = document.createElement("li");
+            element.querySelectorAll("span").forEach( (element2) => {
+                newLi.appendChild(element2);
+            });
+            newLi.style = "border-bottom:1px dashed #000; width: 200px;"
+            printContents.appendChild(newLi);
+        }
+    });
+    document.body.innerHTML = "<h1>Product Count</h1>";
+    document.body.appendChild(printContents);
+    window.print();
+    document.body.innerHTML = originalContents;
+}
+
 function changeBrand ( e ) {
     document.getElementsByName("productlist").forEach( (element) => {
         element.style.display = "none";
