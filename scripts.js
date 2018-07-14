@@ -25,7 +25,7 @@ function printPopulated() {
     document.getElementsByName("productlist").forEach( (productList) => {
         if (productList.style.display == "none") return;  // skip any hidden product list
         var products = productList.getElementsByTagName("li");
-        for (var i = 1; i < products.length; i++) {
+        for (var i = 0; i < products.length; i++) {
             var product = products[i];  // skip the first header element of the lists
             var count = product.getElementsByTagName("span")[1];
             if (count.innerText != "0") {  // the second span is the value field 
